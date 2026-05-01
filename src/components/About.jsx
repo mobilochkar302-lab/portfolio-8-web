@@ -1,28 +1,35 @@
 import { useApp } from '../context/AppContext'
 
-export default function About() {
+export default function Footer() {
   const { lang, texts } = useApp()
   const t = texts[lang]
 
   return (
-    <section id="about">
-      <div className="about container">
-        <div className="col-left">
-          <div className="about-img">
-            <img src="/img/photo-1.jpg" alt="Profile" />
+    <footer>
+      <div className="footer-container container">
+        <div className="brand">
+          <h1>{t.contacts} | <span>Маргарита</span></h1>
+        </div>
+        <h2>---------</h2>
+        <div className="social-icon">
+          <div className="social-item">
+            <a href="https://www.instagram.com/margaritamelnik?igsh=MXY3cW5oOWQzaTJncg==" target="_blank" rel="noreferrer">
+              <img src={`${import.meta.env.BASE_URL}img/insta.png`} alt="instagram" />
+            </a>
+          </div>
+          <div className="social-item">
+            <a href="https://github.com/mobilochkar302-lab" target="_blank" rel="noreferrer">
+              <img src={`${import.meta.env.BASE_URL}img/github.png`} alt="github" />
+            </a>
+          </div>
+          <div className="social-item">
+            <a href="https://www.linkedin.com/in/маргарита-мельник-126379396" target="_blank" rel="noreferrer">
+              <img src={`${import.meta.env.BASE_URL}img/linkedin.png`} alt="linkedin" />
+            </a>
           </div>
         </div>
-        <div className="col-right">
-          <h1 className="section-title">
-            {t.aboutTitle.split(' ')[0]} <span>{t.aboutTitle.split(' ')[1]}</span>
-          </h1>
-          <h2>{t.aboutSubtitle}</h2>
-          <p>{t.aboutText}</p>
-          <a href="https://www.instagram.com/kpiuaofficial2025?igsh=MW95cDAyYTZsNml6cQ==" target="_blank" rel="noreferrer" className="cta">
-            {t.aboutBtn}
-          </a>
-        </div>
+        <p>&copy; 2026. Усі права захищено.</p>
       </div>
-    </section>
+    </footer>
   )
 }

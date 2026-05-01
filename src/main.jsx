@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'   // ключова зміна
 import { AppProvider } from './context/AppContext'
 import App from './App'
 import './style.css'
@@ -8,9 +8,9 @@ import './style.css'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AppProvider>
-      <BrowserRouter>
+      <HashRouter>
         <App />
-      </BrowserRouter>
+      </HashRouter>
     </AppProvider>
   </React.StrictMode>
 )

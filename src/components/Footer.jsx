@@ -9,17 +9,17 @@ export default function Footer() {
         <div className="social-icon">
           <div className="social-item">
             <a href="https://www.instagram.com/margaritamelnik?igsh=MXY3cW5oOWQzaTJncg==" target="_blank" rel="noreferrer">
-              <img src="/img/insta.png" alt="instagram" />
+              <img src="img/insta.png" alt="instagram" />
             </a>
           </div>
           <div className="social-item">
             <a href="https://github.com/mobilochkar302-lab" target="_blank" rel="noreferrer">
-              <img src="/img/github.png" alt="github" />
+              <img src="img/github.png" alt="github" />
             </a>
           </div>
           <div className="social-item">
             <a href="https://www.linkedin.com/in/маргарита-мельник-126379396" target="_blank" rel="noreferrer">
-              <img src="/img/linkedin.png" alt="linkedin" />
+              <img src="img/linkedin.png" alt="linkedin" />
             </a>
           </div>
         </div>
