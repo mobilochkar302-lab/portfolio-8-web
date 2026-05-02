@@ -44,11 +44,10 @@ p {
 }
 
 img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
-
 /* ==================== HEADER ==================== */
 #header {
   position: fixed;
@@ -148,20 +147,17 @@ img {
 
 /* навігація */
 .nav-list ul {
-  list-style: none;
-  position: absolute;
-  background-color: rgb(31, 30, 30);
-  width: 100vw;
-  height: 100vh;
+  position: fixed;
   left: 100%;
   top: 0;
+  width: 100%;
+  height: 100vh;
+  background: black;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 1;
-  overflow-x: hidden;
-  transition: 0.7s ease left;
+  transition: 0.4s;
 }
 
 .nav-list ul.active {
@@ -169,15 +165,11 @@ img {
 }
 
 .nav-list ul a {
-  font-size: 2.5rem;
-  font-weight: 500;
-  letter-spacing: 0.2rem;
-  text-decoration: none;
+  font-size: 2rem;
   color: white;
-  text-transform: uppercase;
-  padding: 20px;
-  display: block;
+  padding: 10px;
 }
+
 
 /* кнопки перекладу/теми */
 .controls {
@@ -205,22 +197,20 @@ body.dark .controls button {
 
 /* ==================== HERO (one) ==================== */
 #hero {
-  background-image: url('/img/one.jpg');
-  background-size: cover;
-  background-position: top center;
+  background: url('/img/one.jpg') center/cover;
 }
 
 #hero .one {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 50px;
+  padding: 0 20px;
   justify-content: flex-start;
 }
 
 #hero h1 {
   display: block;
   width: fit-content;
-  font-size: 4rem;
+  font-size: clamp(2rem, 5vw, 4rem);
   position: relative;
   color: transparent;
   animation: text_reveal 0.5s ease forwards;
@@ -357,6 +347,26 @@ body.dark .cta:hover {
 }
 
 /* ==================== PROJECTS ==================== */
+.all-projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.project-items {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.project-info {
+  padding: 20px;
+}
+
+.project-info h1 {
+  font-size: clamp(1.8rem, 3vw, 3rem);
+}
+
 #projects .projects {
   flex-direction: column;
   max-width: 1200px;
@@ -433,12 +443,15 @@ body.dark .cta:hover {
 
 /* ==================== ABOUT ==================== */
 #about .about {
+  display: flex;
   flex-direction: column-reverse;
+  align-items: center;
 }
 
 .about-img img {
-  height: 500px;
-  width: 500px;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1/1;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -464,16 +477,15 @@ body.dark .cta:hover {
   padding-top: 100px;
 }
 
-.contacts-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 50px 20px;
-  background: rgba(255,255,255,0.85);
-  border-radius: 20px;
-}
 
 body.dark .contacts-container {
   background: rgba(0,0,0,0.7);
+}
+
+.contacts-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .contacts-container h1 {
@@ -516,6 +528,11 @@ body.dark .contacts-container {
 }
 
 /* ==================== FOOTER ==================== */
+footer {
+  text-align: center;
+  padding: 30px;
+}
+
 footer {
   background-image: linear-gradient(60deg, #ff0090 0%, #485563 100%);
   padding: 50px 0 20px;
@@ -567,42 +584,38 @@ body.dark #hero h1:nth-child(3) {
 }
 
 /* ==================== АДАПТИВ ==================== */
-@media only screen and (min-width: 1200px) {
-  .hamb {
-    display: none;
+/* телефон */
+@media (max-width: 480px) {
+  .nav-list ul a {
+    font-size: 1.6rem;
   }
-  .nav-list ul {
-    position: initial;
-    display: block;
-    height: auto;
-    width: fit-content;
-    background: transparent;
-  }
-  .nav-list ul li {
-    display: inline-block;
-  }
-  .nav-list ul li a {
-    font-size: 1.8rem;
-    color: inherit;
-  }
-  .nav-list ul a::after {
-    display: none;
-  }
-  .service-item {
-    flex-basis: 22%;
-    margin: 1.5%;
+
+  .project-info h1 {
+    font-size: 1.6rem;
   }
 }
 
+/* планшет */
 @media (max-width: 768px) {
-  .about-img img {
-    width: 300px;
-    height: 300px;
+  .service-item {
+    flex: 1 1 100%;
   }
-  .project-items {
-    width: 95%;
+}
+
+/* десктоп */
+@media (min-width: 1200px) {
+  .hamb {
+    display: none;
   }
-  .project-info h1 {
-    font-size: 2rem;
+
+  .nav-list ul {
+    position: static;
+    height: auto;
+    flex-direction: row;
+    background: transparent;
+  }
+
+  .nav-list ul a {
+    color: black;
   }
 }
