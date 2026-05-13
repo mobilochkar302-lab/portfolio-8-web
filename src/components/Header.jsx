@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 
@@ -10,12 +10,32 @@ export default function Header() {
 
   const t = texts[lang]
 
+  // Закриваємо меню при зміні розміру вікна на десктопний
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768 && menuOpen) {
+        setMenuOpen(false)
+      }
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [menuOpen])
+
+  // Додаємо/видаляємо клас для затемнення фону (відповідно до CSS)
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add('menu-open')
+    } else {
+      document.body.classList.remove('menu-open')
+    }
+    return () => document.body.classList.remove('menu-open')
+  }, [menuOpen])
+
   const closeMenu = () => setMenuOpen(false)
 
   const handleNavClick = (sectionId) => {
     closeMenu()
     if (location.pathname !== '/') {
-      // Якщо ми не на головній – переходимо на головну, потім через мить скролимо
       navigate('/')
       setTimeout(() => {
         const section = document.getElementById(sectionId)
@@ -28,8 +48,8 @@ export default function Header() {
   }
 
   return (
-    <section id="header">
-      <div className="header container">
+    <header id="header">
+      <div className="header">
         <div className="nav-bar">
           <div className="brand">
             <Link to="/" onClick={closeMenu}>
@@ -37,17 +57,20 @@ export default function Header() {
             </Link>
           </div>
 
+          {/* Кнопки керування (мова/тема) – будуть фіксованими знизу на мобільних згідно з CSS */}
           <div className="controls">
             <button onClick={toggleLang}>{lang.toUpperCase()}</button>
             <button onClick={toggleTheme}>{theme === 'light' ? '🌙' : '☀️'}</button>
           </div>
 
+          {/* Бургер-кнопка */}
           <div className={`hamb ${menuOpen ? 'active' : ''}`} onClick={() => setMenuOpen(!menuOpen)}>
             <div className="bar"></div>
           </div>
 
-          <div className="nav-list">
-            <ul className={menuOpen ? 'active' : ''}>
+          {/* Навігаційне меню – отримує клас 'open' при відкритті */}
+          <div className={`nav-list ${menuOpen ? 'open' : ''}`}>
+            <ul>
               <li>
                 <a href="#services" onClick={(e) => { e.preventDefault(); handleNavClick('services') }}>
                   {t.hobbies}
@@ -70,6 +93,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-    </section>
+    </header>
   )
 }
