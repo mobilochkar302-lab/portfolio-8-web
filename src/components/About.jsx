@@ -10,7 +10,7 @@ export default function About() {
       <div className="about container">
         <div className="col-left">
           <div className="about-img">
-            <img src="/img/photo-1.jpg" alt="Мельник Маргарита" />
+            <img src="img/photo-1.jpg" alt="Мельник Маргарита" />
           </div>
         </div>
         <div className="col-right">
