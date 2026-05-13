@@ -1,6 +1,6 @@
 import { useApp } from '../context/AppContext'
 
-export default function Footer() {
+export default function About() {
   const { lang, texts } = useApp()
   const t = texts[lang]
 
