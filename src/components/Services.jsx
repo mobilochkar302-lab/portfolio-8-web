@@ -17,7 +17,7 @@ export default function Services() {
           {t.hobbiesItems.map((item, idx) => (
             <div className="service-item" key={idx}>
               <div className="icon">
-                <img src="img/design-1.png" alt="icon" />
+                <img src="img/design.png" alt="icon" />
               </div>
               <h2>{item.title}</h2>
               <p>{item.text}</p>
