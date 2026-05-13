@@ -7,7 +7,7 @@ export default function Contacts() {
   return (
     <section id="contacts-page">
       <div className="contacts-container">
-        <h1>{texts[lang].contacts} <span></span></h1>
+        <h1>{texts[lang].contacts}</h1>
         
         <h2>{t.phone}</h2>
         <hr />
