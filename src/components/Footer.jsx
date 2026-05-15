@@ -2,10 +2,6 @@ export default function Footer() {
   return (
     <footer>
       <div className="footer-container container">
-        <div className="brand">
-          <h1>Контакти | <span>Маргарита</span></h1>
-        </div>
-        <h2>---------</h2>
         <div className="social-icon">
           <div className="social-item">
             <a href="https://www.instagram.com/margaritamelnik?igsh=MXY3cW5oOWQzaTJncg==" target="_blank" rel="noreferrer">
