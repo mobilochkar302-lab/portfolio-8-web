@@ -1,35 +1,36 @@
 import { useApp } from '../context/AppContext'
 
-export default function Footer() {
+export default function About() {
   const { lang, texts } = useApp()
-  const t = texts[lang]
+  const t = texts[lang]  // весь об'єкт для поточної мови
+
+  // Якщо тексти не завантажились – покажемо помилку
+  if (!t) return <div>Помилка: тексти не знайдено</div>
 
   return (
-    <footer>
-      <div className="footer-container container">
-        <div className="brand">
-          <h1>{t.contacts} | <span>Маргарита</span></h1>
-        </div>
-        <h2>---------</h2>
-        <div className="social-icon">
-          <div className="social-item">
-            <a href="https://www.instagram.com/margaritamelnik?igsh=MXY3cW5oOWQzaTJncg==" target="_blank" rel="noreferrer">
-              <img src={`${import.meta.env.BASE_URL}img/insta.png`} alt="instagram" />
-            </a>
-          </div>
-          <div className="social-item">
-            <a href="https://github.com/mobilochkar302-lab" target="_blank" rel="noreferrer">
-              <img src={`${import.meta.env.BASE_URL}img/github.png`} alt="github" />
-            </a>
-          </div>
-          <div className="social-item">
-            <a href="https://www.linkedin.com/in/маргарита-мельник-126379396" target="_blank" rel="noreferrer">
-              <img src={`${import.meta.env.BASE_URL}img/linkedin.png`} alt="linkedin" />
-            </a>
+    <section id="about">
+      <div className="about container">
+        <div className="col-left">
+          <div className="about-img">
+            <img src="img/photo-1.jpg" alt="Мельник Маргарита" />
           </div>
         </div>
-        <p>&copy; 2026. Усі права захищено.</p>
+        <div className="col-right">
+          <h1 className="section-title">
+            {t.aboutTitle?.split(' ')[0] || 'про'} <span>{t.aboutTitle?.split(' ')[1] || 'мене'}</span>
+          </h1>
+          <h2>{t.aboutSubtitle || 'Студентка 2 курсу'}</h2>
+          <p>{t.aboutText || 'Навчаюсь у КПІ...'}</p>
+          <a 
+            href={t.aboutLink || "https://www.instagram.com/kpiuaofficial2025"} 
+            target="_blank" 
+            rel="noreferrer" 
+            className="cta"
+          >
+            {t.aboutBtn || 'Instagram'}
+          </a>
+        </div>
       </div>
-    </footer>
+    </section>
   )
 }
